@@ -1,12 +1,12 @@
 databases:
-  - name: redash postgres14    
-    plan: Starter
-    postgresMajorVersion: 14
-    databaseName: redash
-    user: redash
+ - name: redash-next postgres14    
+   plan: Starter
+   postgresMajorVersion: 14
+   databaseName: redash
+   user: redash
 
 services:
-  - name: redash
+  - name: redash-next
     type: web
     autoDeploy: false    
     plan: Starter
@@ -19,11 +19,11 @@ services:
       - fromGroup: redash
       - key: REDASH_DATABASE_URL
         fromDatabase:
-          name: redash postgres14
+          name: redash-next postgres14
           property: connectionString
       - key: REDASH_REDIS_URL
         fromService:
-          name: redash redis
+          name: redash-redis-next
           type: redis
           property: connectionString
       - key: PORT
@@ -31,7 +31,7 @@ services:
       - key: REDASH_WEB_WORKERS
         value: 1
 
-  - name: redash scheduler
+  - name: redash-scheduler-next
     type: worker
     autoDeploy: false    
     plan: Starter
@@ -41,11 +41,11 @@ services:
       - fromGroup: redash
       - key: REDASH_DATABASE_URL
         fromDatabase:
-          name: redash postgres14
+          name: redash-next postgres14
           property: connectionString
       - key: REDASH_REDIS_URL
         fromService:
-          name: redash redis
+          name: redash-redis-next
           type: redis
           property: connectionString
       - key: QUEUES
@@ -53,7 +53,7 @@ services:
       - key: WORKERS_COUNT
         value: 1
 
-  - name: redash worker scheduled
+  - name: redash-worker-scheduled-next
     type: worker
     autoDeploy: false    
     plan: Starter
@@ -63,11 +63,11 @@ services:
       - fromGroup: redash
       - key: REDASH_DATABASE_URL
         fromDatabase:
-          name: redash postgres14
+          name: redash-next postgres14
           property: connectionString
       - key: REDASH_REDIS_URL
         fromService:
-          name: redash redis
+          name: redash-redis-next
           type: redis
           property: connectionString
       - key: QUEUES
@@ -75,7 +75,7 @@ services:
       - key: WORKERS_COUNT
         value: 1
 
-  - name: redash worker adhoc
+  - name: redash-worker-adhoc-next
     type: worker
     autoDeploy: false    
     plan: Starter
@@ -85,11 +85,11 @@ services:
       - fromGroup: redash
       - key: REDASH_DATABASE_URL
         fromDatabase:
-          name: redash postgres14
+          name: redash-next postgres14
           property: connectionString
       - key: REDASH_REDIS_URL
         fromService:
-          name: redash redis
+          name: redash-redis-next
           type: redis
           property: connectionString
       - key: QUEUES
@@ -97,7 +97,7 @@ services:
       - key: WORKERS_COUNT
         value: 1
 
-  - name: redash redis
+  - name: redash-redis-next
     type: redis    
     plan: Starter
     maxmemoryPolicy: noeviction
