@@ -101,6 +101,7 @@ services:
     type: redis    
     plan: Standard
     maxmemoryPolicy: noeviction
+    ipAllowList: []
     
 envVarGroups:
   - name: redash
