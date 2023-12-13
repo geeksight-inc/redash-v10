@@ -1,6 +1,6 @@
 databases:
  - name: redash-db-next    
-   plan: Standard
+   plan: Starter
    postgresMajorVersion: 14
    databaseName: redash
    user: redash
@@ -97,7 +97,7 @@ services:
 
   - name: redash-redis-next
     type: redis    
-    plan: Standard
+    plan: Starter
     maxmemoryPolicy: noeviction
     ipAllowList: []
     
