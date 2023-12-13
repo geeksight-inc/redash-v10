@@ -1,12 +1,12 @@
 databases:
- - name: redash-next postgres14    
-   plan: Starter
+ - name: redash-db-next    
+   plan: Standard
    postgresMajorVersion: 14
    databaseName: redash
    user: redash
 
 services:
-  - name: redash-next
+  - name: redash-web-next
     type: web
     autoDeploy: false    
     plan: Starter
@@ -19,7 +19,7 @@ services:
       - fromGroup: redash
       - key: REDASH_DATABASE_URL
         fromDatabase:
-          name: redash-next postgres14
+          name: redash-db-next
           property: connectionString
       - key: REDASH_REDIS_URL
         fromService:
@@ -41,7 +41,7 @@ services:
       - fromGroup: redash
       - key: REDASH_DATABASE_URL
         fromDatabase:
-          name: redash-next postgres14
+          name: redash-db-next
           property: connectionString
       - key: REDASH_REDIS_URL
         fromService:
@@ -63,7 +63,7 @@ services:
       - fromGroup: redash
       - key: REDASH_DATABASE_URL
         fromDatabase:
-          name: redash-next postgres14
+          name: redash-db-next
           property: connectionString
       - key: REDASH_REDIS_URL
         fromService:
@@ -85,7 +85,7 @@ services:
       - fromGroup: redash
       - key: REDASH_DATABASE_URL
         fromDatabase:
-          name: redash-next postgres14
+          name: redash-db-next
           property: connectionString
       - key: REDASH_REDIS_URL
         fromService:
@@ -99,10 +99,9 @@ services:
 
   - name: redash-redis-next
     type: redis    
-    plan: Starter
+    plan: Standard
     maxmemoryPolicy: noeviction
-    ipAllowList: []
-
+    
 envVarGroups:
   - name: redash
     envVars:
@@ -115,7 +114,7 @@ envVarGroups:
       - key: REDASH_FEATURE_ALLOW_CUSTOM_JS_VISUALIZATIONS
         value: true
       - key: REDASH_MAIL_SERVER
-        value: smtp-relay.sendinblue.com
+        value: smtp-relay.brevo.com
       - key: REDASH_MAIL_PORT
         value: 587
       - key: REDASH_MAIL_USE_TLS
